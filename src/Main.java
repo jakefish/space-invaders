@@ -1,3 +1,5 @@
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Timer;
@@ -34,14 +36,17 @@ public class Main {
 
 		final JButton button = new JButton();
 		button.setLayout(null);
-		button.setLocation(20, 20);
-		button.setSize(200, 200);
+		button.setPreferredSize(new Dimension(200,200));
+		button.setLocation(0, 0);
+		frame.add(button);
+	
+		//button.setSize(200, 200);
 		button.setContentAreaFilled(false);
 		
 		button.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
 				System.out.println(evt);
-				if(evt.getX() > 20 && evt.getX() < 220){
+				if(evt.getX() >= 546 && evt.getX() <= 703 && evt.getY() >=186 && evt.getY() <=234){
 					frame.setVisible(true);
 					frame.pack();
 					shipScreen();
@@ -50,7 +55,6 @@ public class Main {
 				
 			}
 		});
-		frame.add(button);
 	}
 	
 	public static void shipScreen(){

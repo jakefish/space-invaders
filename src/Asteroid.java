@@ -14,7 +14,6 @@ public class Asteroid extends Entity {
 	private int startY;
 	private int startX;
 	private int damageCounter = 0;
-	
 
 	public Asteroid(int x, int y) {
 		super(x, y);
@@ -25,7 +24,7 @@ public class Asteroid extends Entity {
 	public void update() {
 		y += 1;
 		checkCollisions();
-		
+
 	}
 
 	public void draw(Graphics2D g2d) {
@@ -34,14 +33,14 @@ public class Asteroid extends Entity {
 	}
 
 	public Image getEnemyImg() {
-		
-				
+
 		ImageIcon ic = new ImageIcon("src/ast2.png");
-		
+
 		return ic.getImage();
 	}
+
 	public void checkCollisions() {
-		Timer timer= new Timer();
+		Timer timer = new Timer();
 		for (int i = 0; i < GameFrame.getMissileList().size(); i++) {
 			Missile m = GameFrame.getMissileList().get(i);
 			if (getBounds().intersects(m.getBounds())) {
@@ -70,7 +69,7 @@ public class Asteroid extends Entity {
 			}
 
 		}
-		
+
 		for (int k = 0; k < GameFrame.getLaserList().size(); k++) {
 			Laser l = GameFrame.getLaserList().get(k);
 			if (getBounds().intersects(l.getBounds())) {
@@ -82,7 +81,6 @@ public class Asteroid extends Entity {
 					GameFrame.addScore(new Score(l.getX() - 40, l.getY() - 60));
 					GameFrame.removeLaser(l);
 					GameFrame.score += 50;
-					
 
 					timer.schedule(new TimerTask() {
 
@@ -96,7 +94,6 @@ public class Asteroid extends Entity {
 								Boom bm = GameFrame.getBoomList().get(k);
 								GameFrame.removeBoom(bm);
 							}
-							
 
 						}
 					}, 400);
@@ -104,8 +101,9 @@ public class Asteroid extends Entity {
 				}
 			}
 		}
-	
+
 	}
+
 	public Rectangle getBounds() {
 		return new Rectangle(x - 5, y - 5, getEnemyImg().getWidth(null) - 5,
 				getEnemyImg().getHeight(null) - 5);
